@@ -1,11 +1,11 @@
 import { faker } from '@faker-js/faker';
-import { getInnerText, getNumbers } from './utilities/data';
+import { getInnerText, getNumbers } from '../../utilities/data';
 import {
   sortNumbersASC,
   sortStringsASC,
   sortNumbersDESC,
   sortStringsDESC,
-} from './utilities/sorting';
+} from '../../utilities/sorting';
 
 const firstName = faker.name.firstName();
 const lastName = faker.name.lastName();
