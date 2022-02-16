@@ -1,151 +1,114 @@
+/* eslint-disable class-methods-use-this */
 class RegistrationFormPage {
-  url = 'https://demoqa.com/automation-practice-form';
-
-  submitButtonSelector = '#submit';
-
-  firstNameInputSelector = '#firstName';
-
-  lastNameInputSelector = '#lastName';
-
-  emailInputSelector = '#userEmail';
-
-  mobileInputSelector = '#userNumber';
-
-  userFormSelector = '#userForm';
-
-  genderSelector = 'input[name="gender"]';
-
-  dateOfBirthDatepickerSelector = '.react-datepicker__input-container';
-
-  dateOfMonthDatepickerSelector = '.react-datepicker__month-select';
-
-  dateOfYearDatepickerSelector = '.react-datepicker__year-select';
-
-  dateOfDayDatepickerSelector =
-    '.react-datepicker__day:not(.react-datepicker__day--outside-month)';
-
-  hobbyCheckboxSelector = 'input[type="checkbox"]';
-
-  hobbyLabelsSelector = '.custom-control-label';
-
-  currentAddressSelector = '#currentAddress';
-
-  stateDropdownSelector = '#state';
-
-  dropdownMenuSelector = 'div[class*="menu"]';
-
-  cityDropdownSelector = '#city';
-
-  subjectsDropdownSelector = '#subjectsContainer';
-
-  dropdownSubjectMenuSelector = 'div[id*="option"]';
-
-  subjectLabelsSelector = '.subjects-auto-complete__multi-value__label';
-
-  selectFileInputSelector = '#uploadPicture';
-
   get submitBtn() {
-    return cy.get(this.submitButtonSelector);
+    return cy.get('#submit');
   }
 
   get firstNameInput() {
-    return cy.get(this.firstNameInputSelector);
+    return cy.get('input#firstName');
   }
 
   get lastNameInput() {
-    return cy.get(this.lastNameInputSelector);
+    return cy.get('input#lastName');
   }
 
   get emailInput() {
-    return cy.get(this.emailInputSelector);
+    return cy.get('input#userEmail');
   }
 
   get mobileInput() {
-    return cy.get(this.mobileInputSelector);
+    return cy.get('input#userNumber');
   }
 
   get userForm() {
-    return cy.get(this.userFormSelector);
+    return cy.get('form#userForm');
   }
 
   get maleGenderRadioButton() {
-    return cy.get(this.genderSelector).eq(0);
+    return cy.get('input[name="gender"]').eq(0);
   }
 
   get femaleGenderRadioButton() {
-    return cy.get(this.genderSelector).eq(1);
+    return cy.get('input[name="gender"]').eq(1);
   }
 
   get otherGenderRadioButton() {
-    return cy.get(this.genderSelector).eq(2);
+    return cy.get('input[name="gender"]').eq(2);
   }
 
   get dateOfBirthDatepicker() {
-    return cy.get(this.dateOfBirthDatepickerSelector);
+    return cy.get('div.react-datepicker__input-container');
   }
 
   get dateOfMonthDatepicker() {
-    return cy.get(this.dateOfMonthDatepickerSelector);
+    return cy.get('select.react-datepicker__month-select');
   }
 
   get dateOfYearDatepicker() {
-    return cy.get(this.dateOfYearDatepickerSelector);
+    return cy.get('select.react-datepicker__year-select');
   }
 
   get dateOfDayDatepicker() {
-    return cy.get(this.dateOfDayDatepickerSelector);
+    return cy.get(
+      'div.react-datepicker__day:not(.react-datepicker__day--outside-month)',
+    );
   }
 
   get subjectsDropdown() {
-    return cy.get(this.subjectsDropdownSelector);
+    return cy.get('div#subjectsContainer');
   }
 
   get subjectLabels() {
-    return cy.get(this.subjectLabelsSelector);
+    return cy.get('div.subjects-auto-complete__multi-value__label');
   }
 
   get sportsHobbyCheckbox() {
-    return cy.get(this.hobbyCheckboxSelector).eq(0);
+    return cy.get('input[type="checkbox"]').eq(0);
   }
 
   get readingHobbyCheckbox() {
-    return cy.get(this.hobbyCheckboxSelector).eq(1);
+    return cy.get('input[type="checkbox"]').eq(1);
   }
 
   get musicHobbyCheckbox() {
-    return cy.get(this.hobbyCheckboxSelector).eq(2);
+    return cy.get('input[type="checkbox"]').eq(2);
   }
 
   get hobbyLabels() {
-    return cy.get(this.hobbyLabelsSelector);
+    return cy.get('label.custom-control-label');
   }
 
   get currentAddress() {
-    return cy.get(this.currentAddressSelector);
+    return cy.get('textarea#currentAddress');
   }
 
   get stateDropdown() {
-    return cy.get(this.stateDropdownSelector);
+    return cy.get('div#state');
   }
 
   get dropdownMenu() {
-    return cy.get(this.dropdownMenuSelector);
+    return cy.get('div[class*="menu"]');
   }
 
   get cityDropdown() {
-    return cy.get(this.cityDropdownSelector);
+    return cy.get('div#city');
   }
 
   get dropdownSubjectMenu() {
-    return cy.get(this.dropdownSubjectMenuSelector);
+    return cy.get('div[id*="option"]');
   }
 
   get selectFileInput() {
-    return cy.get(this.selectFileInputSelector);
+    return cy.get('input#uploadPicture');
   }
 
   open() {
-    cy.visit(this.url);
+    cy.visit('https://demoqa.com/automation-practice-form');
+  }
+
+  uploadFile(fileName) {
+    const fixtureFolderPath = Cypress.config('fixturesFolder');
+    this.selectFileInput.selectFile(`${fixtureFolderPath}/${fileName}`);
   }
 }
 

@@ -2,26 +2,23 @@ import 'cypress-file-upload';
 import { RegistrationFormPage } from '../page-objects/student-registration-form';
 import { SubmitStudentDataForm } from '../page-objects/submit-student-data-modal';
 
-import {
-  randomUserData,
-  GENDER,
-  SUBJECT,
-  HOBBIES,
-  STATES,
-  HARYANA_STATE_CITIES,
-} from '../constants/user-data';
+import { randomUserData } from '../constants/user-data';
+
+import { GENDER } from '../constants/gender';
+
+import { SUBJECT, HOBBIES } from '../constants/interests';
+
+import { STATES, HARYANA_STATE_CITIES } from '../constants/places';
 
 describe('Lesson16', () => {
-  describe('Other Gender Flow', () => {
-    let registrationFormPage;
-    let submitStudentDataForm;
+  context('Other Gender Flow', () => {
+    const registrationFormPage = new RegistrationFormPage();
+    const submitStudentDataForm = new SubmitStudentDataForm();
 
     before(() => {
-      registrationFormPage = new RegistrationFormPage();
       registrationFormPage.open();
-
-      submitStudentDataForm = new SubmitStudentDataForm();
     });
+
     it('Should open Student Registration Form page', () => {
       registrationFormPage.userForm.should('exist');
     });
@@ -43,6 +40,7 @@ describe('Lesson16', () => {
         .type(randomUserData.FAKE_EMAIL)
         .should('have.value', randomUserData.FAKE_EMAIL);
     });
+
     it('Should mark Other gender radio button', () => {
       registrationFormPage.otherGenderRadioButton.click({ force: true });
       registrationFormPage.otherGenderRadioButton.should('be.checked');
@@ -53,6 +51,7 @@ describe('Lesson16', () => {
         .type(randomUserData.FAKE_MOBILE)
         .should('have.value', randomUserData.FAKE_MOBILE);
     });
+
     it('Should fill DatePicker input', () => {
       registrationFormPage.dateOfBirthDatepicker.click();
 
@@ -101,11 +100,8 @@ describe('Lesson16', () => {
         .should('exist');
     });
 
-    it('Should download the picture', () => {
-      const fixtureFolderPath = Cypress.config('fixturesFolder');
-      registrationFormPage.selectFileInput.selectFile(
-        `${fixtureFolderPath}/home.jpg`,
-      );
+    it('Should upload the picture', () => {
+      registrationFormPage.uploadFile('home.jpg');
     });
 
     it('Should fill Current Address field', () => {
@@ -117,6 +113,7 @@ describe('Lesson16', () => {
       registrationFormPage.stateDropdown.click();
       registrationFormPage.dropdownMenu.contains(STATES.haryana).click();
     });
+
     it('Should select value from City dropdown', () => {
       registrationFormPage.cityDropdown.click();
       registrationFormPage.dropdownMenu
