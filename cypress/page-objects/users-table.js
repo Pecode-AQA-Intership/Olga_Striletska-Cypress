@@ -122,4 +122,42 @@ class UserTable {
   }
 }
 
-export { RegistrationFormPopup, UserTable };
+class UserForm {
+  get fullNameField() {
+    return cy.get('#userForm #userName');
+  }
+
+  get userEmailField() {
+    return cy.get('#userForm #userEmail');
+  }
+
+  get currentAddressField() {
+    return cy.get('#userForm #currentAddress');
+  }
+
+  get secondaryAddressField() {
+    return cy.get('#userForm #permanentAddress');
+  }
+
+  get submitButton() {
+    return cy.get('#userForm #submit');
+  }
+
+  get outputName() {
+    return cy.get('#output #name');
+  }
+
+  get outputEmail() {
+    return cy.get('#output #email');
+  }
+
+  get outputCurrentAddress() {
+    return cy.get('#output #currentAddress');
+  }
+
+  get outputPermanentAddress() {
+    return cy.get('#output #permanentAddress');
+  }
+}
+
+export { RegistrationFormPopup, UserTable, UserForm };
